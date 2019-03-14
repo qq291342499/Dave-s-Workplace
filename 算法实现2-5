@@ -4,7 +4,7 @@ int n,i,count,a[999],b[999];
 char c[999];  
 int  dfs(int step)//DFS深度优化有限搜索算法  
 {   
-    if(step==n+1)     //输出 
+    if(step==n+1)     //判断边界 
     {  
         count++;     //统计结果个数 
         for(int i=1;i<=n;i++)  
@@ -12,7 +12,7 @@ int  dfs(int step)//DFS深度优化有限搜索算法
         printf("\n");  
         return 0;  
     }  
-    for(int i=1;i<=26;++i)//26个英文字母
+    for(int i=1;i<=26;++i)
     if(a[i]>0)  
     {  
         b[step]=i;  
