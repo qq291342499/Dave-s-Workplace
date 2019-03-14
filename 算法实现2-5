@@ -1,0 +1,33 @@
+#include<stdio.h>  
+#include<string.h>  
+int n,i,count,a[999],b[999];  
+char c[999];  
+int  dfs(int step)//DFS深度优化有限搜索算法  
+{   
+    if(step==n+1)     //输出 
+    {  
+        count++;     //统计结果个数 
+        for(int i=1;i<=n;i++)  
+        printf("%c",b[i]+'a'-1);  
+        printf("\n");  
+        return 0;  
+    }  
+    for(int i=1;i<=26;++i)//26个英文字母
+    if(a[i]>0)  
+    {  
+        b[step]=i;  
+        a[i]--;  
+        dfs(step+1);    //递归进行下一步搜索
+        a[i]++;      
+    } 
+}  
+int main()  
+{  
+    scanf("%d",&n);   
+    scanf("%s",c);  
+    for(i=0;i<n;i++)  
+    a[c[i]-'a'+1]++;  
+    dfs(1); //从第一个数据开始搜索 
+    printf("%d\n",count);  
+    return 0;  
+}//算法复杂性为O(n)
