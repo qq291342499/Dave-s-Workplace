@@ -1,0 +1,66 @@
+/*————————————————————————————————————————————计算机172班201706401208李俊达————————————————————————————————————————————————————————————*/
+#include<iostream>
+using namespace std;                   
+int arr_w[999];//属性的约束值
+int arr_v[999]; //每个物品价值
+int arr_a[999][999];//每种物品的属性值
+
+void fun(int n,int m,int r){
+	int flag,k,x=1,y,z,v,max;
+	if(r>n-1){
+		if(v>max){
+			max=v;
+			cout<<"\n";
+			cout<<"最大价值为"<<max<<endl;
+			cout<<"\n";
+		}
+	}
+	else
+	{
+		for(int k=0;k<m-1;k++){
+		 flag=arr_w[k]-arr_a[k][r];
+		}
+		 if(flag<0)
+		 {
+			x=0;
+		 }
+		 if(x==1){//满足执行
+			v=v+arr_v[r];
+			 for(int y=0;y<m-1;y++){
+			arr_w[y]=arr_w[y]-arr_a[y][r];
+			 }
+		    fun(n,m,r+1);//下一层
+		    v=v-arr_v[r];
+		 for(int z=0;z<m-1;z++){
+			arr_w[z]=arr_w[z]+arr_a[z][r];
+		 }
+		}
+		fun(n,m,r+1);//不满足则不去进行下一层
+	}
+}
+
+int main(){
+   int n=0;//物品数量      
+   int m=0;//约束条件 
+   int r=0;
+   cout<<"请输入物品数量和约束数"<<endl;
+   cin>>n>>m;
+   cout<<"请输入每个物品价格"<<endl;
+   for(int x=0;x<=n-1;x++){
+	   cin>>arr_v[x];
+   }
+   for(int j=0;j<=m-1;j++){
+	   cout<<"请输入每种物品的属性"<<j+1<<"\n"<<endl;
+	   for(int i=0;i<=n-1;i++){
+		   cin>>arr_a[i][j];
+	   }
+   }
+   cout<<"请输入每种属性的约束值"<<endl;
+	  for(int k=0;k<=m-1;k++){
+	   cin>>arr_v[k];	
+   }
+   fun(n,m,r);
+   system("pause");
+   return 0;
+  
+}
